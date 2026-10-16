@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STUD CODE / T BABI — Leather Jacket</title>
+<meta name="description" content="STUD CODE / T BABI — premium black leather jacket. Premium Fall/Winter streetwear.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="announcement">THE FIRST CODE DROP IS HERE — FALL / WINTER</div>
+
+<header>
+  <a class="brand" href="#top">STUD CODE <span>/</span> T BABI</a>
+  <nav>
+    <a href="#shop">SHOP</a><a href="#story">THE CODE</a><a href="#campaign">CAMPAIGN</a><a href="#contact">CONTACT</a>
+  </nav>
+  <button class="bag" onclick="openBag()">BAG <b id="count">0</b></button>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="kicker">STUD CODE / T BABI</p>
+    <h1>THE CODE</h1>
+    <p class="hero-copy">Classic structure. Modern edge. The signature black leather jacket with clean SC branding and premium silver hardware.</p>
+    <a class="cta" href="#shop">SHOP THE LEATHER JACKET</a>
+  </div>
+</section>
+
+<section class="marquee"><span>BLACK LEATHER</span><span>CLEAN STRUCTURE</span><span>SC HARDWARE</span><span>STUD CODE / T BABI</span><span>PLAY IT BY THE CODE</span></section>
+
+<section class="intro" id="story">
+  <div>
+    <p class="kicker">THE CODE</p>
+    <h2>More than clothes.<br><em>It's a movement.</em></h2>
+  </div>
+  <p>STUD CODE / T BABI makes statement streetwear for masculine-presenting women and studs: structured silhouettes, premium details and pieces built to move with confidence.</p>
+</section>
+
+<section class="product" id="shop">
+  <div class="product-media">
+    <img src="assets/stud-code-leather-product.jpg" alt="Black STUD CODE leather jacket front and back without back lettering">
+  </div>
+  <div class="product-info">
+    <p class="kicker">FEATURED PRODUCT / 001</p>
+    <h2>STUD CODE<br>LEATHER JACKET</h2>
+    <p class="price">$180.00</p>
+    <p class="description">A premium black leather jacket with clean back detailing, subtle SC branding, silver hardware and two front pockets. No back lettering.</p>
+    <div class="details">
+      <div><strong>COLOR</strong><span>BLACK</span></div>
+      <div><strong>DETAIL</strong><span>CLEAN BACK / SC HARDWARE</span></div>
+      <div><strong>FIT</strong><span>STRUCTURED / RELAXED</span></div>
+    </div>
+    <label>SIZE</label>
+    <div class="sizes" id="sizes">
+      <button>S</button><button>M</button><button>L</button><button>XL</button><button>2XL</button>
+    </div>
+    <button class="add" onclick="addToBag()">ADD TO BAG — $180</button>
+    <p class="shipping">Free shipping on orders $150+ · Easy returns</p>
+  </div>
+</section>
+
+<section class="details-grid">
+  <div class="detail-card"><img src="assets/campaign-1.jpg" alt="Zipper and collar details"><h3>THE HARDWARE</h3><p>Premium two-way metal zipper. Clean, substantial and designed to be seen.</p></div>
+  <div class="detail-card"><img src="assets/campaign-3.jpg" alt="Brand and fabric details"><h3>THE MARK</h3><p>Subtle SC chest branding and T BABI details keep the finish intentional.</p></div>
+  <div class="detail-card"><img src="assets/campaign-4.jpg" alt="Fall winter campaign"><h3>THE SEASON</h3><p>Forest, burgundy, chocolate and warm amber set the tone for Fall/Winter.</p></div>
+</section>
+
+<section class="campaign" id="campaign">
+  <div class="campaign-copy"><p class="kicker">FALL / WINTER 2026</p><h2>PLAY IT<br><em>BY THE CODE.</em></h2><p>Black leather. Clean lines. Premium silver hardware. A signature piece made for those who move by their own code.</p></div>
+  <img src="assets/stud-code-leather-hero.jpg" alt="Model wearing the black STUD CODE leather jacket">
+</section>
+
+<section class="collection">
+  <div class="collection-head"><p class="kicker">THE COLLECTION</p><h2>Build your code.</h2></div>
+  <div class="tiles">
+    <article><div class="tile green"></div><h3>CODE ZIP</h3><p>$168</p></article>
+    <article><div class="tile burgundy"></div><h3>FLANNEL-TRIM JOGGER</h3><p>$98</p></article>
+    <article><div class="tile cream"></div><h3>THERMAL LONG-SLEEVE</h3><p>$58</p></article>
+    <article><div class="tile brown"></div><h3>BUTTON SHORT SET</h3><p>$112</p></article>
+  </div>
+</section>
+
+<section class="newsletter" id="contact">
+  <p class="kicker">STAY IN THE CODE</p>
+  <h2>First access. New drops.<br>Nothing extra.</h2>
+  <form onsubmit="signup(event)"><input id="email" type="email" required placeholder="EMAIL ADDRESS"><button>JOIN</button></form>
+  <small id="msg"></small>
+</section>
+</main>
+
+<footer><div class="brand">STUD CODE <span>/</span> T BABI</div><p>© 2026 STUD CODE / T BABI. PLAY IT BY THE CODE.</p></footer>
+
+<aside class="drawer" id="drawer">
+  <div class="drawer-head"><h2>YOUR BAG</h2><button onclick="closeBag()">×</button></div>
+  <div id="bagContent" class="empty">Your bag is empty.</div>
+  <div class="bag-total"><span>TOTAL</span><strong id="total">$0.00</strong></div>
+  <button class="checkout" onclick="checkout()">CHECKOUT</button>
+  <p class="checkout-note">Payment checkout is ready to connect to your Shopify or Stripe account.</p>
+</aside>
+<div class="scrim" id="scrim" onclick="closeBag()"></div>
+
+<script>
+let bag=[];
+let selectedSize="M";
+document.querySelectorAll("#sizes button").forEach(b=>b.onclick=()=>{selectedSize=b.textContent;document.querySelectorAll("#sizes button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected")});
+document.querySelector("#sizes button:nth-child(2)").classList.add("selected");
+function addToBag(){bag.push({name:"STUD CODE LEATHER JACKET",price:180,size:selectedSize});renderBag();openBag()}
+function renderBag(){
+ document.getElementById("count").textContent=bag.length;
+ document.getElementById("bagContent").innerHTML=bag.length?bag.map((x,i)=>`<div class="bag-item"><div><b>${x.name}</b><span>Size ${x.size}</span></div><strong>$${x.price}</strong><button onclick="removeItem(${i})">REMOVE</button></div>`).join(""):"<div class='empty'>Your bag is empty.</div>";
+ document.getElementById("total").textContent="$"+bag.reduce((a,x)=>a+x.price,0).toFixed(2);
+}
+function removeItem(i){bag.splice(i,1);renderBag()}
+function openBag(){document.getElementById("drawer").classList.add("open");document.getElementById("scrim").classList.add("open")}
+function closeBag(){document.getElementById("drawer").classList.remove("open");document.getElementById("scrim").classList.remove("open")}
+function checkout(){alert("Checkout is not connected yet. Add your Shopify checkout or a secure payment link before accepting live payments.")}
+function signup(e){e.preventDefault();document.getElementById("msg").textContent="You're in. Welcome to the code.";document.getElementById("email").value=""}
+renderBag();
+</script>
+</body>
+</html>
